@@ -1,26 +1,31 @@
 .App-header {
-    background-color: white;
+    background-color: whitesmoke;
     padding: 1rem;
     display: flex;
     position: sticky;
     top: 0;
+    font-size: 100%;
+    font: inherit;
+}
+
+
+.App-nav {
+    background-color: #282828;
+    float: left;
+    text-decoration: none;
+    position: relative;
+
 }
 
 .App-body {
     background-color: #5977BD;
     padding: 24rem;
+    justify-content: right;
 
 }
 
-.App-nav {
-    background-color: #202020;
-    float: left;
-    text-decoration: none;
-    position: relative;
-    
-}
 
 .App-footer {
-    background-color: white;
+    background-color: whitesmoke;
     display: flex;
 }

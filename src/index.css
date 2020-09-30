@@ -1,6 +1,8 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
-    margin: 0;
+    background-color: whitesmoke;
+    font-weight: 400;
+    line-height: 22px;
 }
 
 a, li, ul {
