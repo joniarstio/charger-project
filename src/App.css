@@ -1,7 +1,9 @@
 .App-header {
     background-color: white;
-    padding: 2rem;
+    padding: 1rem;
     display: flex;
+    position: sticky;
+    top: 0;
 }
 
 .App-body {
@@ -10,10 +12,11 @@
 
 }
 
-.App-menu {
+.App-nav {
     background-color: #202020;
     float: left;
     text-decoration: none;
+    position: relative;
     
 }
 

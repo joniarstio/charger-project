@@ -15,7 +15,7 @@ class App extends Component {
       <div className="App-search">
       </div>
         <div className="App-body">
-          <div className="App-menu">
+          <div className="App-nav">
               <ul>
                <a>Something</a>
                <a>Something</a>
