@@ -1,0 +1,15 @@
+.App-header {
+    background-color: white;
+    padding: 2rem;
+    display: flex;
+}
+
+.App-body {
+    background-color: #5977BD;
+    padding: 24rem;
+}
+
+.App-footer {
+    background-color: white;
+    display: flex;
+}
