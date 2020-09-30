@@ -7,6 +7,14 @@
 .App-body {
     background-color: #5977BD;
     padding: 24rem;
+
+}
+
+.App-menu {
+    background-color: #202020;
+    float: left;
+    text-decoration: none;
+    
 }
 
 .App-footer {

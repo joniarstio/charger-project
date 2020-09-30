@@ -13,14 +13,13 @@ class App extends Component {
             <h1>Home</h1>
         </div>
       <div className="App-search">
-
       </div>
         <div className="App-body">
           <div className="App-menu">
               <ul>
-                <li><a>Something</a></li>
-                <li><a>Something</a></li>
-                <li><a>something</a></li>
+               <a>Something</a>
+               <a>Something</a>
+              <a>something</a>
               </ul>
           </div>
         </div>
