@@ -1,17 +1,18 @@
 .App-header {
     background-color: whitesmoke;
-    padding: 1rem;
     display: flex;
     position: sticky;
     top: 0;
     font-size: 100%;
     font: inherit;
+    padding: 1rem;
 }
 
 
 .App-nav {
-    background-color: #282828;
+    background-color: whitesmoke;
     float: left;
+    padding: 22rem 10rem;
     text-decoration: none;
     position: relative;
 
@@ -19,13 +20,14 @@
 
 .App-body {
     background-color: #5977BD;
-    padding: 24rem;
     justify-content: right;
+    padding: 22rem 40rem;
+    float: right;
+    border-radius: 1rem;
 
 }
 
 
 .App-footer {
     background-color: whitesmoke;
-    display: flex;
 }
