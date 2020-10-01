@@ -13,8 +13,8 @@
         },
         {
             "id": 2,
-            "name": "Lapland Hotels Oulu",
-            "location": "Kirkkokatu 3b, 90100",
+            "name": "Oulun energia toimitalo",
+            "location": "Kasarmintie 6, 90130 Oulu",
             "speed": "Slow",
             "connectorType": "Type2",
             "price": 0.20,
@@ -24,24 +24,35 @@
         },
         {
             "id": 3,
+            "name": "Lapland Hotels Oulu",
+            "location": "Kirkkokatu 3b, 90100",
+            "speed": "Slow",
+            "connectorType": "Type2",
+            "price": 0.20,
+            "kW ": 22,
+            "serialNo": 10002,
+            "status": false
+        },
+        {
+            "id": 4,
             "name": "Sokos Hotel Arina",
             "location": "Pakkahuoneenkatu 16, 90100 Oulu",
             "speed": "Slow",
             "connectorType": "Type2",
             "price": 0.20,
             "kW ": 11,
-            "serialNo": 10002,
+            "serialNo": 10003,
             "status": false
         },
         {
-            "id": 4,
+            "id": 5,
             "name": "P-Autotori / Scandic Oulu City",
             "location": "Albertinaktu 3, 90100 Oulu",
             "speed": "Slow",
             "connectorType": "Type2",
             "price": 0.20,
             "kW ": 11,
-            "serialNo": 10003,
+            "serialNo": 10004,
             "status": false
         }
     ]
