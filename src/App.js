@@ -1,21 +1,38 @@
-import { render } from '@testing-library/react';
-import React, { Component } from 'react';
+import React from 'react';
 import './App.css';
+import SearchView from './components/ChargerSearchView';
+import data from './data.json'
 
 
-class App extends Component {
-  render() {
+class App extends React.Component {
+  constructor(props)
+  {
+    super(props);
+    this.state = {
+      chargers: data.chargers,
+      chargerSearchString: ""
+    }
+  }
+
+  onSearchChange = (event) => {
+    console.log(event.target.value);
+    this.setState({ chargerSearchString: event.target.value });
+  }
+
+  render() 
+  {
     return (
-    <body>
+      <main>
       {/* sidebar and nav */}
       <header>
-        <div class="App-header">
-          <h1 class="main">Charge</h1>
-          <h1 class="main-second">Up</h1>
-        </div>
-      <div class="App-search">
+      <div className="App-header">
+        <h1 className="main">Charge</h1>
+        <h1 className="main-second">Up</h1>
       </div>
-      <div class="App-regAndlog">
+      <div className="App-search">
+        <input type="text" onChange={this.onSearchChange} value={this.state.chargerSearchString}/>
+      </div>
+      <div className="App-regAndlog">
         <h2>Login</h2>
         <h2>Sing Up</h2>
       </div>
@@ -30,13 +47,12 @@ class App extends Component {
           </ul>
         </div>
         </header>
-        <main>
         <div className="App-view">
-          <div class="Map">
+          <div className="Map">
+            <SearchView chargers={this.state.chargers.filter((charger) => charger.name.includes(this.state.chargerSearchString))} />
           </div>
         </div>
       </main>
-    </body>
   );
  }
 }

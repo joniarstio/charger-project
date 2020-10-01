@@ -24,7 +24,7 @@
         },
         {
             "id": 3,
-            "name": "Lapland Hotels Oulu",
+            "name": "Lapland Hotels Oulu", 
             "location": "Kirkkokatu 3b, 90100",
             "speed": "Slow",
             "connectorType": "Type2",
