@@ -1,12 +1,15 @@
-import React from "react";
-import Signup from './components/Signup'
-import Login from './components/Login'
+import React from 'react';
+import { Account } from './components/Accounts';
+import Signup from './components/Signup';
+import Login from './components/Login';
+import Status from './components/Status';
 
 export default () => {
   return (
-    <div>
+    <Account>
+      <Status />
       <Signup />
       <Login />
-    </div>
+    </Account>
   );
 };
