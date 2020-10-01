@@ -1,10 +1,10 @@
 body {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Arial, Helvetica, sans-serif, 'Fira Sans Condensed';
     background-color: whitesmoke;
-    font-weight: 400;
-    line-height: 22px;
+    line-height: 2rem;
+    display: flex;
 }
 
-a, li, ul {
-    text-decoration: none;
+header {
+    padding-right: 8rem;
 }

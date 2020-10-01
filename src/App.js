@@ -8,37 +8,32 @@ class App extends Component {
     return (
     <body>
       {/* sidebar and nav */}
-      <div class="App-header">
-          <h1 class="main">Header</h1>
-            <h1>Login</h1>
-            <h1>Home</h1>
+      <header>
+        <div class="App-header">
+          <h1 class="main">Charge Up</h1>
+          <h1>Login</h1>
         </div>
       <div className="App-search">
       </div>
         <div className="App-nav">
           <ul>
             <li>
-              <a>Something</a>
+              <a>Start charging</a>
             </li>
             <li>
-              <a>Something</a>
-            </li>
-            <li>
-              <a>something</a>
+              <a>Previous charges</a>
             </li>
           </ul>
         </div>
-        <div className="App-body">
-          Kartta
+        </header>
+        <div className="App-view">
+          <div class="map">
+            Kartta
+          </div>
         </div>
-
-        <div className="App-footer">
-            <h2>footer</h2>
-    </div>
-
-  </body>
+    </body>
   );
  }
 }
 
-export default App;
+export  default App;
