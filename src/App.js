@@ -10,10 +10,14 @@ class App extends Component {
       {/* sidebar and nav */}
       <header>
         <div class="App-header">
-          <h1 class="main">Charge Up</h1>
-          <h1>Login</h1>
+          <h1 class="main">Charge</h1>
+          <h1 class="main-second">Up</h1>
         </div>
-      <div className="App-search">
+      <div class="App-search">
+      </div>
+      <div class="App-regAndlog">
+        <h2>Login</h2>
+        <h2>Sing Up</h2>
       </div>
         <div className="App-nav">
           <ul>
@@ -26,11 +30,12 @@ class App extends Component {
           </ul>
         </div>
         </header>
+        <main>
         <div className="App-view">
-          <div class="map">
-            Kartta
+          <div class="Map">
           </div>
         </div>
+      </main>
     </body>
   );
  }

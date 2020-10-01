@@ -1,15 +1,28 @@
 .App-header {
     background-color: whitesmoke;
     position: sticky;
-    top: 0;
-    font-size: 100%;
-    font: inherit;
-    padding: 2rem;
+    padding: 1rem 5rem 0rem;
     display: flex;
     font-family: 'Fira Sans Condensed', sans-serif;
 
 }
 
+.main {
+    color: #5977BD;
+    padding-top: 1.5rem;
+    font-size: 2.5rem;
+}
+
+.main-second {
+    color: #87C7AD;
+    font-size: 3rem;
+
+}
+
+.App-regAndlog {
+    display: flex;
+    justify-content: center;
+}
 
 .App-nav {
     background-color: whitesmoke;
@@ -17,15 +30,9 @@
     display: flex;
 }
 
-.ul {
-    text-decoration: none;
-}
 
-.App-view {
+.Map {
     background-color: #5977BD;
-    justify-content: right;
-    padding: 22rem 40rem;
-    float: right;
+    padding: 27rem 45rem;
     border-radius: 1rem;
-
 }
