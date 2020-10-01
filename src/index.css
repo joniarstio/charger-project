@@ -1,5 +1,5 @@
 body {
-    font-family: Arial, Helvetica, sans-serif, 'Fira Sans Condensed';
+    font-family: 'Fira Sans Condensed', sans-serif, Arial, Helvetica;
     background-color: whitesmoke;
     line-height: 2rem;
     display: flex;
