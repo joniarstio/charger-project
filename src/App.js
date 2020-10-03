@@ -15,6 +15,7 @@ class App extends React.Component {
     }
   }
 
+  
   componentDidMount() {
     axios.get('http://localhost:4000/chargers')
       .then(response => {
@@ -24,9 +25,18 @@ class App extends React.Component {
       .catch((err) => console.log(err));
   }
 
+
+  toLowerCase = () => {
+    const lowerCase = this.state.chargerSearchString.toLowerCase();
+    this.setState({
+      chargerSearchString: lowerCase
+    });
+
+  }
+  
   onSearchChange = (event) => {
     console.log(event.target.value);
-    this.setState({ chargerSearchString: event.target.value });
+    this.setState({ toLowerCase: event.target.value });
   }
 
   render() 
@@ -40,7 +50,7 @@ class App extends React.Component {
           <h1 className="main-second">Up</h1>
         </div>
         <div className="App-search">
-          <input type="text" onChange={this.onSearchChange} value={this.state.chargerSearchString}/>
+          <input type="text" onChange={this.onSearchChange} value={this.state.toLowerCase}/>
         </div>
         <div className="App-regAndlog">
           <h2>Login</h2>
@@ -59,7 +69,7 @@ class App extends React.Component {
       </header>
       <div className="App-view">
         <div className="Map">
-          <SearchView chargers={this.state.charger.filter((charger) => charger.name.includes(this.state.chargerSearchString))} />
+          <SearchView chargers={this.state.charger.filter((charger) => charger.name.includes(this.state.toLowerCase))} />
         </div>
       </div>
     </main>
