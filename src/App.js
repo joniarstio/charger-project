@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import './App.css';
 import SearchView from './components/ChargerSearchView';
-import MapWrapped from './components/MapWrapped';
+import MapsGoogle from './components/MapsGoogle';
 
 
 
@@ -41,7 +41,6 @@ class App extends React.Component {
   }
 
   
-
   render() 
   {
     return (
@@ -70,10 +69,10 @@ class App extends React.Component {
           </ul>
         </div>
       </header>
-      <div className="App-view">
-        <div className="Map">
+      <div className="Map">
+          <MapsGoogle />
+        <div className="Map-view">
           <SearchView chargers={this.state.charger.filter((charger) => charger.name.includes(this.state.toLowerCase))} />
-            <MapWrapped />
         </div>
       </div>
     </main>
@@ -81,4 +80,4 @@ class App extends React.Component {
  }
 }
 
-export  default App;
+export default App;

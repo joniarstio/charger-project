@@ -30,9 +30,7 @@
     display: flex;
 }
 
-
-.Map {
-    background-color: #5977BD;
-    padding: 27rem 45rem;
+.Map-view {
+    padding: 20rem 45rem;
     border-radius: 1rem;
 }
