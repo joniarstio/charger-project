@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import './App.css';
 import SearchView from './components/ChargerSearchView';
+import MapWrapped from './components/MapWrapped';
 
 
 
@@ -39,6 +40,8 @@ class App extends React.Component {
     this.setState({ toLowerCase: event.target.value });
   }
 
+  
+
   render() 
   {
     return (
@@ -70,6 +73,7 @@ class App extends React.Component {
       <div className="App-view">
         <div className="Map">
           <SearchView chargers={this.state.charger.filter((charger) => charger.name.includes(this.state.toLowerCase))} />
+            <MapWrapped />
         </div>
       </div>
     </main>
