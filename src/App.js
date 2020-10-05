@@ -69,12 +69,14 @@ class App extends React.Component {
           </ul>
         </div>
       </header>
+      <body>
       <div className="Map">
-          <MapsGoogle />
+        <MapsGoogle />
+      </div>
         <div className="Map-view">
           <SearchView chargers={this.state.charger.filter((charger) => charger.name.includes(this.state.toLowerCase))} />
         </div>
-      </div>
+      </body>
     </main>
   );
  }
