@@ -12,7 +12,9 @@ class App extends React.Component {
     super(props);
     this.state = {
       charger: [],
-      chargerSearchString: ""
+      chargerSearchString: "",
+      googleMapsMarkers: "",
+      selectedChapters: null
     }
   }
 
@@ -25,6 +27,13 @@ class App extends React.Component {
       })
       .catch((err) => console.log(err));
   }
+
+
+  SetGoogleMapsMarkers(parameter) {
+    this.setState({googleMapsMarkers: parameter})
+  }
+
+
 
 
   toLowerCase = () => {
