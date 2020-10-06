@@ -1,6 +1,6 @@
 import React from 'react';
 import Geocode from 'react-geocode';
-import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow} from "react-google-maps";
+import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps";
 
 Geocode.setApiKey('AIzaSyCL72hkbFiIIJDj6Jf4EHk4grZ61Rb8bbA')
 
@@ -23,7 +23,7 @@ export default class MapsGoogle extends React.Component {
 
   componentDidMount() {
 
-    /* Gets users current location via Geocode */
+    /* Gets users current location via Geocode and positions map there when accesse or refershed website*/
     if(navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(position => {
         this.setState({    
