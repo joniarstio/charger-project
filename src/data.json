@@ -9,7 +9,9 @@
             "price": 0.18,
             "kW ": 50,
             "serialNo": 10000,
-            "status": false
+            "status": false,
+            "lat": 65.0125,
+            "lng": 25.4806
         },
         {
             "id": 2,
@@ -20,18 +22,22 @@
             "price": 0.20,
             "kW ": 22,
             "serialNo": 10001,
-            "status": false
+            "status": false,
+            "lat": 65.0125,
+            "lng": 25.4806
         },
         {
             "id": 3,
-            "name": "Lapland Hotels Oulu",
+            "name": "Lapland Hotels Oulu", 
             "location": "Kirkkokatu 3b, 90100",
             "speed": "Slow",
             "connectorType": "Type2",
             "price": 0.20,
             "kW ": 22,
             "serialNo": 10002,
-            "status": false
+            "status": false,
+            "lat": 65.0155,
+            "lng": 25.4767
         },
         {
             "id": 4,
@@ -42,7 +48,9 @@
             "price": 0.20,
             "kW ": 11,
             "serialNo": 10003,
-            "status": false
+            "status": false,
+            "lat": 65.0123,
+            "lng": 25.4724
         },
         {
             "id": 5,
@@ -53,7 +61,9 @@
             "price": 0.20,
             "kW ": 11,
             "serialNo": 10004,
-            "status": false
+            "status": false,
+            "lat": 65.0112,
+            "lng": 25.4649
         }
     ]
 }
