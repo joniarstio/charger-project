@@ -38,12 +38,15 @@ export default class Stopwatch extends React.Component {
         const { isRunning, runningTime } = this.state;
         return (
             <div>
-            <h2>{ this.formatTime(runningTime) }</h2>
+            <h2>{ this.formatTime(runningTime) }s</h2>
+            <div>{(this.formatTime(runningTime) * 0.2 / 60).toFixed(3)} €</div>
             <button onClick={ this.handleStartStopClick }>
                 {isRunning ? "Stop" : "Start"}
             </button>
+            
             <button onClick={ this.handleResetClick }>Reset</button>
             <button onClick={ this.handleEndClick }>End</button>
+            
             </div>
         );
     }
