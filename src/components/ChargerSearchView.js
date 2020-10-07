@@ -1,5 +1,4 @@
 import React from 'react';
-
 import SearchResult from './ChargerSearchResult';
 
 export default function ChargerSearchView(props) {

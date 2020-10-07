@@ -12,9 +12,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       charger: [],
-      chargerSearchString: "",
-      googleMapsMarkers: "",
-      selectedChapters: null
+      chargerSearchString: ""
     }
   }
 
@@ -27,13 +25,6 @@ class App extends React.Component {
       })
       .catch((err) => console.log(err));
   }
-
-
-  SetGoogleMapsMarkers(parameter) {
-    this.setState({googleMapsMarkers: parameter})
-  }
-
-
 
 
   toLowerCase = () => {
@@ -60,29 +51,28 @@ class App extends React.Component {
           <h1 className="main">Charge</h1>
           <h1 className="main-second">Up</h1>
         </div>
-        <div className="App-search">
-          <input type="text" onChange={this.onSearchChange} value={this.state.toLowerCase}/>
-        </div>
         <div className="App-regAndlog">
           <h2>Login</h2>
           <h2>Sing Up</h2>
         </div>
-        <div className="App-nav">
-          <ul>
-            <li>
+        <ul >
+          <li className="App-nav">
               <a>Start charging</a>
-            </li>
+          </li>
             <li>
               <a>Previous charges</a>
-            </li>
-          </ul>
-        </div>
+          </li>
+        </ul>
       </header>
       <body>
-      <div className="Map">
-        <MapsGoogle />
+      <div className="App-search">
+        <h2>Search charger</h2>
+        <input type="text" onChange={this.onSearchChange} value={this.state.toLowerCase} />
       </div>
-        <div className="Map-view">
+      <>
+        <MapsGoogle />
+      </>
+      <div className="Map-view">
           <SearchView chargers={this.state.charger.filter((charger) => charger.name.includes(this.state.toLowerCase))} />
         </div>
       </body>
