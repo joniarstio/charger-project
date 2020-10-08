@@ -1,17 +1,23 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+const express = require('express');
+const bodyParser = require('body-parser');
+const chargerData = require('./data.json');
+const cors = require('cors');
+const app = express();
+const port = 4000;
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+app.use(cors());
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+app.use(bodyParser.json());
+
+app.get('/', (req, res) => {
+  res.json('Hello World!')
+})
+
+/** Get data of all chargers */
+app.get('/chargers', (req, res) => {
+  res.json(chargerData.chargers);
+})
+
+app.listen(port, () => {
+  console.log(`http://localhost:${port}`)
+})
