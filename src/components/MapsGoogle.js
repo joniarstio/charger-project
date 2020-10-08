@@ -1,4 +1,3 @@
-
 import React from "react";
 import axios from 'axios';
 import { compose } from "recompose";
@@ -9,20 +8,19 @@ const MapWithAMarker = compose(withScriptjs, withGoogleMap)(props => {
 
   return (
     <GoogleMap defaultZoom={5} defaultCenter={{ lat: 65, lng: 25.7482 }}>
-      {props.markers.map(marker => {
-        const onClick = props.onClick.bind(this, marker)
+      {props.chargers.map(charger => {
+        const onClick = props.onClick.bind(this, charger)
         return (
-          <Marker key={marker.id}  onClick={onClick} position={{ lat: marker.lat, lng: marker.lng }} >
-          {props.selectedMarker === marker &&
+          <Marker key={charger.id}  onClick={onClick} position={{ lat: charger.lat, lng: charger.lng }} >
+          {props.selectedCharger === charger &&
             <InfoWindow>
               <div>
-                {marker.name}
+                {charger.name}
                 <br></br>
-                {marker.location}
+                {charger.location}
                 <br></br>
-                {marker.connectorType}
-                <br></br>
-                <h3>{marker.kW}</h3>
+                <p>Connector type:{charger.connectorType}</p>
+                <p>Price: {charger.price} € / kWh</p>
               </div>
             </InfoWindow>
           }
@@ -39,6 +37,7 @@ export default class ShelterMap extends React.Component {
     super(props)
     this.state = {
       chargers: [],
+      chargerSearchString: "",
       selectedMarker: false
     }
   }
@@ -47,29 +46,30 @@ export default class ShelterMap extends React.Component {
     axios.get('http://localhost:4000/chargers')
       .then(response => {
         console.log(response);
-        this.setState({ chargers: response.data.chargers})
+        this.setState({ chargers: response.data})
       })
   }
 
-  handleClick = (marker, event) => {
-    this.SetSelectedMarker(marker)
-    console.log(marker)
+  handleClick = (charger) => {
+    this.SetSelectedCharger(charger)
+    console.log(charger)
   }
   
-  SetSelectedMarker = (parameters) => {
-    this.setState({selectedMarker: parameters})
-   
- }
-  render() {
+  SetSelectedCharger = (parameters) => {
+    this.setState({selectedCharger: parameters})
+  }
+
+  render() 
+  {
     return (
-      <MapWithAMarker
-        SetSelectedMarker={this.SetSelectedMarker}
-        selectedMarker={this.state.selectedMarker}
-        markers={this.state.chargers}
+        <MapWithAMarker
+        SetSelectedCharger={this.SetSelectedCharger}
+        selectedCharger={this.state.selectedCharger}
+        chargers={this.state.chargers.filter((charger) => charger.name.includes(this.state.chargerSearchString))}
         onClick={this.handleClick}
         googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyCL72hkbFiIIJDj6Jf4EHk4grZ61Rb8bbA&v=3.exp&libraries=geometry,drawing,places"
         loadingElement={<div style={{ height: `100%` }} />}
-        containerElement={<div style={{ height: `700px` }} />}
+        containerElement={<div style={{ height: `800px` }} />}
         mapElement={<div style={{ height: `100%` }} />}
       />
     )
