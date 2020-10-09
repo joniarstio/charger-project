@@ -9,7 +9,6 @@ import Login from './components/Login';
 import Status from './components/Status';
 import Stopwatch from './components/Timer';
 
-
 class App extends React.Component {
   constructor(props) {
     super(props);
