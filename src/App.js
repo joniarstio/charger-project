@@ -13,11 +13,10 @@ class App extends React.Component {
     this.state = {
       charger: [],
       chargerSearchString: "",
-      selectedMarker: false
+      
     }
   }
 
-  
   componentDidMount() {
     axios.get('http://localhost:4000/chargers')
       .then(response => {
@@ -41,13 +40,21 @@ class App extends React.Component {
     this.setState({ toLowerCase: event.target.value });
   }
   
+  handleSubmit(event) {
+    alert("Your favorite flavor is: " + this.state.value);
+    event.preventDefault();
+  }
+
+  handleChange = event => {
+    this.setState({ value: event.target.value });
+  };
 
   
   render() 
   {
     return (
     <main>
-      {/* sidebar and nav */}
+      {/* Header and side navigation */}
       <header>
         <div className="App-header">
           <h1 className="main">Charge</h1>
@@ -65,27 +72,19 @@ class App extends React.Component {
               <p>Previous charges</p>
           </li>
         </ul>
+        <div>
+        <SearchView chargers={this.state.charger.filter((charger) => charger.name.includes(this.state.toLowerCase))} />
+      </div>
       </header>
       <body>
-      {/* h2>Search charger</h2>
-        <input type="text" onChange={this.onSearchChange} value={this.state.toLowerCase} /> */ }
+      <input type="text" onChange={this.onSearchChange} value={this.state.toLowerCase} />
       <form onSubmit={this.handleSubmit}>
-          <label>
-            <h2>Search for charger</h2>
-            <select value={this.state.value} onChange={this.handleChange}>
-              <option value="grapefruit">Grapefruit</option>
-              <option value="lime">Lime</option>
-              <option value="coconut">Coconut</option>
-              <option value="mango">Mango</option>
-            </select>
-          </label>
-          <input type="submit" value="Submit" />
-        </form>
+     
+      </form>
       <>
         <MapsGoogle />
       </>
-      <div className="Search-view">
-          <SearchView chargers={this.state.charger.filter((charger) => charger.name.includes(this.state.toLowerCase))} />
+      <div className="Search-view">  
         </div>
       </body>
     </main>

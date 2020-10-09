@@ -9,6 +9,7 @@ export default function ChargerSearchResult(props) {
                 <div>{props.connectorType}</div>
                 <div>{props.price}</div>
                 <div>{props.kW}</div>
+                <div>{props.status}</div>
             </div>
         </div>
     )
