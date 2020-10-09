@@ -1,121 +1,77 @@
-import React from 'react';
-import Geocode from 'react-geocode';
-import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps";
+import React from "react";
+import axios from 'axios';
+import { compose } from "recompose";
+import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow } from "react-google-maps"
 
-Geocode.setApiKey('AIzaSyCL72hkbFiIIJDj6Jf4EHk4grZ61Rb8bbA')
 
-export default class MapsGoogle extends React.Component {
+const MapWithAMarker = compose(withScriptjs, withGoogleMap)(props => {
 
-    state = {
-      adress: "",
-      city: "",
-      zoom: 15,
-      height: 300,
-      mapPosition: {
-        lat: 0,
-        lng: 0,
-      },
-      markerPosition: {
-        lat:0,
-        lng: 0
+  return (
+    <GoogleMap defaultZoom={5} defaultCenter={{ lat: 65, lng: 25.7482 }}>
+      {props.chargers.map(charger => {
+        const onClick = props.onClick.bind(this, charger)
+        return (
+          <Marker key={charger.id}  onClick={onClick} position={{ lat: charger.lat, lng: charger.lng }} >
+          {props.selectedCharger === charger &&
+            <InfoWindow>
+              <div>
+                {charger.name}
+                <br></br>
+                {charger.location}
+                <br></br>
+                <p>Connector type:{charger.connectorType}</p>
+                <p>Price: {charger.price} € / kWh</p>
+              </div>
+            </InfoWindow>
+          }
+          </Marker>
+        )
+      })}
+    </GoogleMap>
+  )
+})
+
+export default class ShelterMap extends React.Component {
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      chargers: [],
+      chargerSearchString: "",
+      selectedMarker: false
     }
   }
 
   componentDidMount() {
-
-    /* Gets users current location via Geocode and positions map there when accesse or refershed website*/
-    if(navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(position => {
-        this.setState({    
-          mapPosition: {
-          lat: position.coords.latitude,
-          lng: position.coords.longitude,
-        },
-        markerPosition: {
-          lat: position.coords.latitude,
-          lng: position.coords.longitude
-        }
-      }, () => {
-        Geocode.fromLatLng(position.coords.latitude, position.coords.longitude)
-          .then(response => {
-            console.log('response', response)
-            const address = response.results[0].formatted_address,
-              addressArray = response.results[0].address_components,
-              city = this.getCity(addressArray);
-              
-              this.setState({
-              address: (address) ? address: "",
-              city: (city) ?  city: "",
-              })
-            })
-          })
-        })
-      }
-    }
-
-  getCity = (addressArray) => {
-      let city = '';
-      for (let index = 0; index < addressArray.lenght; index++){
-        if(addressArray[index].type[0] && 'administrative_area_level_2' === addressArray[index].types[0]) {
-          city = addressArray[index].long_name;
-          return city;
-        }
-      }
-  }
-
-  onMarkerDragEnd = (event) => {
-
-    let newLattitude = event.latLng.lat();
-    let newLongitude = event.latLng.lng();
-
-    Geocode.fromLatLng(newLattitude, newLongitude)
+    axios.get('http://localhost:4000/chargers')
       .then(response => {
-        console.log('response', response)
-        const address = response.results[0].formatted_address,
-              addressArray = response.results[0].address_components,
-              city = this.getCity(addressArray);
-              
-      this.setState({
-        address: (address) ? address: "",
-        city: (city) ?  city: "",
-        markerPosition: {
-          lat: newLattitude,
-          lng: newLongitude
-        },
-        mapPosition: {
-          lat: newLattitude,
-          lng: newLongitude
-        },
+        console.log(response);
+        this.setState({ chargers: response.data})
       })
-    })
   }
 
-  render() {
-    const MapWithAMarker = withScriptjs(withGoogleMap(props =>
-      <GoogleMap
-        defaultZoom={10}
-        defaultCenter={{ lat: this.state.mapPosition.lat , lng: this.state.mapPosition.lng }}
-      >
-        <Marker
-          draggable={true}
-          onDragEnd={this.onMarkerDragEnd}
-          position={{ lat: this.state.markerPosition.lat, lng: this.state.markerPosition.lng }}
-        >
-        </Marker>
-      </GoogleMap>
-    ));
+  handleClick = (charger) => {
+    this.SetSelectedCharger(charger)
+    console.log(charger)
+  }
+  
+  SetSelectedCharger = (parameters) => {
+    this.setState({selectedCharger: parameters})
+  }
 
-
+  render() 
+  {
     return (
-      <div>
-        <h2>Search charger</h2>
         <MapWithAMarker
-          googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyCL72hkbFiIIJDj6Jf4EHk4grZ61Rb8bbA&v=3.exp&libraries=geometry,drawing,places"
-          loadingElement={<div style={{ height: `100%` }} />}
-          containerElement={<div style={{ height: `800px` }} />}
-          mapElement={<div style={{ height: `100%` }} />}
-        />
-      </div>
-    );
+        SetSelectedCharger={this.SetSelectedCharger}
+        selectedCharger={this.state.selectedCharger}
+        chargers={this.state.chargers.filter((charger) => charger.name.includes(this.state.chargerSearchString))}
+        onClick={this.handleClick}
+        googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyCL72hkbFiIIJDj6Jf4EHk4grZ61Rb8bbA&v=3.exp&libraries=geometry,drawing,places"
+        loadingElement={<div style={{ height: `100%` }} />}
+        containerElement={<div style={{ height: `800px` }} />}
+        mapElement={<div style={{ height: `100%` }} />}
+      />
+    )
   }
 }

@@ -7,7 +7,7 @@ import { Account } from './components/Accounts';
 import Signup from './components/Signup';
 import Login from './components/Login';
 import Status from './components/Status';
-
+import Stopwatch from './components/Timer';
 
 class App extends React.Component {
   constructor(props) {
@@ -19,7 +19,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    axios.get('http://localhost:4000/chargers')
+    axios.get('http://3.91.205.54/chargers')
       .then(response => {
         console.log(response);
         this.setState({ charger: response.data.chargers })
@@ -62,10 +62,11 @@ class App extends React.Component {
           <div className="App-nav">
             <ul>
               <li>
-                <a>Start charging</a>
+                <p>Start charging</p>
+                <Stopwatch />
               </li>
               <li>
-                <a>Previous charges</a>
+                <p>Previous charges</p>
               </li>
             </ul>
           </div>
@@ -75,7 +76,7 @@ class App extends React.Component {
             <MapsGoogle />
           </div>
           <div className="Map-view">
-            <SearchView chargers={this.state.charger.filter((charger) => charger.name.includes(this.state.toLowerCase))} />
+            {/*<SearchView chargers={this.state.charger.filter((charger) => charger.name.includes(this.state.toLowerCase))} /> */}
           </div>
         </body>
       </main>
