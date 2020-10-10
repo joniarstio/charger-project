@@ -26,6 +26,7 @@ const MapWithAMarker = compose(withScriptjs, withGoogleMap)(props => {
             </InfoWindow>
           }
           </Marker>
+          
         )
       })}
     </GoogleMap>

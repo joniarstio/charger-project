@@ -1,57 +1,13 @@
 import React from 'react';
 import axios from 'axios';
 import './App.css';
-import SearchView from './components/ChargerSearchView';
 import MapsGoogle from './components/MapsGoogle';
-
-
+import ChargersDD from './components/ChargersDD';
 
 class App extends React.Component {
-  constructor(props)
-  {
-    super(props);
-    this.state = {
-      charger: [],
-      chargerSearchString: "",
-      
-    }
-  }
 
-  componentDidMount() {
-    axios.get('http://localhost:4000/chargers')
-      .then(response => {
-        console.log(response);
-        this.setState({ chargers: response.data.chargers})
-      })
-      .catch((err) => console.log(err));
-  }
+  render() {
 
-
-  toLowerCase = () => {
-    const lowerCase = this.state.chargerSearchString.toLowerCase();
-    this.setState({
-      chargerSearchString: lowerCase
-    });
-
-  }
-  
-  onSearchChange = (event) => {
-    console.log(event.target.value);
-    this.setState({ toLowerCase: event.target.value });
-  }
-  
-  handleSubmit(event) {
-    alert("Your favorite flavor is: " + this.state.value);
-    event.preventDefault();
-  }
-
-  handleChange = event => {
-    this.setState({ value: event.target.value });
-  };
-
-  
-  render() 
-  {
     return (
     <main>
       {/* Header and side navigation */}
@@ -66,30 +22,33 @@ class App extends React.Component {
         </div>
         <ul >
           <li className="App-nav">
-              <p>Start charging</p>
+            <p>Start charging</p>
           </li>
             <li>
-              <p>Previous charges</p>
+            <p>Previous charges</p>
           </li>
         </ul>
-        <div>
-        <SearchView chargers={this.state.charger.filter((charger) => charger.name.includes(this.state.toLowerCase))} />
-      </div>
-      </header>
+        </header>        
       <body>
-      <input type="text" onChange={this.onSearchChange} value={this.state.toLowerCase} />
-      <form onSubmit={this.handleSubmit}>
-     
-      </form>
       <>
-        <MapsGoogle />
+      <ChargersDD />
+      <MapsGoogle />
       </>
-      <div className="Search-view">  
-        </div>
+      <div className="Search-view">
+      </div>
       </body>
+
+      {/* 
+        
+        </div>
+        <ChargerView
+          chargers={ this.state.chargers.filter((charger) => charger.name.includes(this.state.chargerSearchString)) }
+                 <input type="text" onChange={ this.onSearchFieldChange } value={ this.state.productSearchString }/> 
+          /> */}
     </main>
   );
  }
 }
+
 
 export default App;
