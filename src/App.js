@@ -19,11 +19,11 @@ class App extends React.Component {
           <h2>Login</h2>
           <h2>Sing Up</h2>
         </div>
-        <ul >
+        <ul>
           <li className="App-nav">
             <p>Start charging</p>
           </li>
-            <li>
+          <li>
             <p>Previous charges</p>
           </li>
         </ul>
@@ -36,14 +36,6 @@ class App extends React.Component {
       <div className="Search-view">
       </div>
       </body>
-
-      {/* 
-        
-        </div>
-        <ChargerView
-          chargers={ this.state.chargers.filter((charger) => charger.name.includes(this.state.chargerSearchString)) }
-                 <input type="text" onChange={ this.onSearchFieldChange } value={ this.state.productSearchString }/> 
-          /> */}
     </main>
   );
  }
