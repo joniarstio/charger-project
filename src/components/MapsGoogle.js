@@ -21,6 +21,7 @@ const MapWithAMarker = compose(withScriptjs, withGoogleMap)(props => {
                 <br></br>
                 <p>Connector type:{charger.connectorType}</p>
                 <p>Price: {charger.price} € / kWh</p>
+                <p>{charger.status}</p>
               </div>
             </InfoWindow>
           }

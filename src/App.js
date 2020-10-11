@@ -1,8 +1,7 @@
 import React from 'react';
-import axios from 'axios';
 import './App.css';
-import SearchView from './components/ChargerSearchView';
 import MapsGoogle from './components/MapsGoogle';
+import ChargersDD from './components/ChargersDD';
 import { Account } from './components/Accounts';
 import Signup from './components/Signup';
 import Login from './components/Login';
@@ -73,7 +72,10 @@ class App extends React.Component {
         </header>
         <body>
           <div className="Map">
-            <MapsGoogle />
+             <>
+              <ChargersDD />
+              <MapsGoogle />
+            </>
           </div>
           <div className="Map-view">
             {/*<SearchView chargers={this.state.charger.filter((charger) => charger.name.includes(this.state.toLowerCase))} /> */}
