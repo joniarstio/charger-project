@@ -2,12 +2,18 @@ import React from 'react';
 import axios from 'axios';
 
 export default class DropDown extends React.Component {
-    state = {
-        chargers: []
+    constructor(props) {
+        super(props);
+        this.state = {
+        chargers: [],
+        chargerSearchString: ""
+
+        }
+        
     }
 
     componentDidMount() {
-        axios.get('http://localhost:4000/chargers')
+        axios.get('http://54.84.83.147/chargers')
           .then(response => {
             console.log(response);
             this.setState({ chargers: response.data})
@@ -17,7 +23,9 @@ export default class DropDown extends React.Component {
     render(){
         return <div className="drop-down">
             <form>
+            <label>
             <h2>See all chargers from the list</h2>
+            </label>
                 <select>
                 {
                  this.state.chargers.map((charger) => {

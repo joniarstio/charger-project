@@ -19,7 +19,9 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    axios.get('http://3.91.205.54/chargers')
+   {/* Joni axios.get('http://3.91.205.54/chargers') */}
+   {/* Venla */}
+   axios.get('http://54.84.83.147/chargers')
       .then(response => {
         console.log(response);
         this.setState({ charger: response.data.chargers })
@@ -27,18 +29,6 @@ class App extends React.Component {
       .catch((err) => console.log(err));
   }
 
-  toLowerCase = () => {
-    const lowerCase = this.state.chargerSearchString.toLowerCase();
-    this.setState({
-      chargerSearchString: lowerCase
-    });
-
-  }
-
-  onSearchChange = (event) => {
-    console.log(event.target.value);
-    this.setState({ toLowerCase: event.target.value });
-  }
 
   render() {
     return (
@@ -71,15 +61,13 @@ class App extends React.Component {
             </ul>
           </div>
         </header>
+        {/* Main map view and dropdwon list */}
         <body>
-          <div className="Map">
+          <div className="Map-view">
              <>
               <ChargersDD />
               <MapsGoogle />
             </>
-          </div>
-          <div className="Map-view">
-            {/*<SearchView chargers={this.state.charger.filter((charger) => charger.name.includes(this.state.toLowerCase))} /> */}
           </div>
         </body>
       </main>
