@@ -10,6 +10,7 @@ const MapWithAMarker = compose(withScriptjs, withGoogleMap)(props => {
       {props.chargers.map(charger => {
         const onClick = props.onClick.bind(this, charger)
         return (
+
           <Marker key={charger.id} onClick={onClick} position={{ lat: charger.lat, lng: charger.lng }} >
             {props.selectedCharger === charger &&
               <InfoWindow>
@@ -43,10 +44,10 @@ export default class ShelterMap extends React.Component {
   }
 
   componentDidMount() {
-    axios.get('http://localhost:4000/chargers')
+    axios.get('http://54.84.83.147/chargers')
       .then(response => {
         console.log(response);
-        this.setState({ chargers: response.data })
+        this.setState({ chargers: response.data})
       })
   }
 
@@ -59,9 +60,11 @@ export default class ShelterMap extends React.Component {
     this.setState({ selectedCharger: parameters })
   }
 
-  render() {
+
+  render() 
+  {
     return (
-      <MapWithAMarker
+        <MapWithAMarker
         SetSelectedCharger={this.SetSelectedCharger}
         selectedCharger={this.state.selectedCharger}
         chargers={this.state.chargers.filter((charger) => charger.name.includes(this.state.chargerSearchString))}
@@ -70,6 +73,8 @@ export default class ShelterMap extends React.Component {
         loadingElement={<div style={{ height: `100%` }} />}
         containerElement={<div style={{ height: `800px` }} />}
         mapElement={<div style={{ height: `100%` }} />}
+        containerElement={<div style={{ height: `780px` }} />}
+        mapElement={<div style={{ height: `100%`, width: `80rem` }} />}
       />
     )
   }

@@ -3,6 +3,7 @@ import axios from 'axios';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './App.css';
 import MapsGoogle from './components/MapsGoogle';
+import ChargersDD from './components/ChargersDD';
 import LoginView from './components/LoginView';
 import ProtectedRoute from './components/ProtectedRoute';
 import ProtectedView from './components/ProtectedView';
@@ -76,9 +77,6 @@ class App extends React.Component {
             <h1 className="main">Charge</h1>
             <h1 className="main-second">Up</h1>
           </div>
-          <div className="App-search">
-            <input type="text" onChange={this.onSearchChange} value={this.state.toLowerCase} />
-          </div>
           <div>
             <Router>
               <Route path="/" exact render={
@@ -103,14 +101,16 @@ class App extends React.Component {
           </div>
 
         </header>
+        {/* Main map view and dropdwon list */}
         <body>
-          <div className="Map">
+          <>
+            <ChargersDD />
             <MapsGoogle />
           </div>
           <div className="Map-view">
             {/*<SearchView chargers={this.state.charger.filter((charger) => charger.name.includes(this.state.toLowerCase))} /> */}
           </div>
-
+          </>
         </body>
       </main>
     );
