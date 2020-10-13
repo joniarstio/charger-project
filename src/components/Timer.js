@@ -1,14 +1,21 @@
 import React from 'react';
+import axios from 'axios';
 
 export default class Stopwatch extends React.Component {
     state = {
         runningTime: 0,
-        isRunning: false
+        isRunning: false,
+        chargers: []
     };
 
     componentDidMount() {
- 
+        axios.get('http://54.84.83.147/chargers')
+          .then(response => {
+            console.log(response);
+            this.setState({ chargers: response.data})
+          })
     }
+
     handleStartStopClick = () => {
         if(this.state.isRunning) {
             clearInterval(this.timerID);
