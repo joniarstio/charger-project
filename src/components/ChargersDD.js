@@ -6,6 +6,7 @@ export default class DropDown extends React.Component {
     super(props);
         this.state = {
         chargers: [],
+        searchString: ""
         }
     }
 
@@ -17,13 +18,19 @@ export default class DropDown extends React.Component {
           })
       }
 
+      onChange = (event) => {
+        console.log(event.target.value);
+        this.setState({ searchString: event.target.value });
+      }
+
     render(){
         return <div className="drop-down">
             <form>
             <h3>Search chargers from the list</h3>
+            <input type="text" placeholder="Search charger by location" onChange={ this.onChange } value={ this.state.toLowerCase }/>
                 <select>
                 {
-                 this.state.chargers.map((charger) => {
+                 this.state.chargers.filter(charger => charger.location.toLowerCase().includes(this.state.searchString)).map(charger => {
                  return <option value={charger.id}> 
                             {charger.name}
                             {charger.location}
