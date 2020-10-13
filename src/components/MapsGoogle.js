@@ -1,8 +1,7 @@
 import React from "react";
 import axios from 'axios';
 import { compose } from "recompose";
-import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow } from "react-google-maps"
-
+import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow } from "react-google-maps";
 
 const MapWithAMarker = compose(withScriptjs, withGoogleMap)(props => {
 
@@ -11,20 +10,21 @@ const MapWithAMarker = compose(withScriptjs, withGoogleMap)(props => {
       {props.chargers.map(charger => {
         const onClick = props.onClick.bind(this, charger)
         return (
-          <Marker key={charger.id}  onClick={onClick} position={{ lat: charger.lat, lng: charger.lng }} >
-          {props.selectedCharger === charger &&
-            <InfoWindow>
-              <div>
-                {charger.name}
-                <br></br>
-                {charger.location}
-                <br></br>
-                <p>Connector type:{charger.connectorType}</p>
-                <p>Price: {charger.price} € / kWh</p>
-                <p>{charger.status}</p>
-              </div>
-            </InfoWindow>
-          }
+
+          <Marker key={charger.id} onClick={onClick} position={{ lat: charger.lat, lng: charger.lng }} >
+            {props.selectedCharger === charger &&
+              <InfoWindow>
+                <div>
+                  {charger.name}
+                  <br></br>
+                  {charger.location}
+                  <br></br>
+                  <p>Connector type: {charger.connectorType}</p>
+                  <p>Price: {charger.price} €/kWh</p>
+
+                </div>
+              </InfoWindow>
+            }
           </Marker>
         )
       })}
@@ -39,7 +39,7 @@ export default class ShelterMap extends React.Component {
     this.state = {
       chargers: [],
       chargerSearchString: "",
-      selectedMarker: false
+      selectedMarker: false,
     }
   }
 
@@ -55,10 +55,11 @@ export default class ShelterMap extends React.Component {
     this.SetSelectedCharger(charger)
     console.log(charger)
   }
-  
+
   SetSelectedCharger = (parameters) => {
-    this.setState({selectedCharger: parameters})
+    this.setState({ selectedCharger: parameters })
   }
+
 
   render() 
   {
@@ -70,6 +71,8 @@ export default class ShelterMap extends React.Component {
         onClick={this.handleClick}
         googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyCL72hkbFiIIJDj6Jf4EHk4grZ61Rb8bbA&v=3.exp&libraries=geometry,drawing,places"
         loadingElement={<div style={{ height: `100%` }} />}
+        containerElement={<div style={{ height: `800px` }} />}
+        mapElement={<div style={{ height: `100%` }} />}
         containerElement={<div style={{ height: `780px` }} />}
         mapElement={<div style={{ height: `100%`, width: `80rem` }} />}
       />

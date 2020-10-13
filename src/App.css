@@ -1,5 +1,9 @@
 .App-header {
     background-color: whitesmoke;
+    position: sticky;
+    padding: 1rem 5rem 0rem;
+    display: flex;
+    font-family: 'Fira Sans Condensed', sans-serif;
     padding: 1rem 5rem 0rem;
     display: flex;
     font-family: 'Fira Sans Condensed', sans-serif;
@@ -34,4 +38,9 @@
     background-color: whitesmoke;
     text-decoration: none;
     display: flex;
+}
+
+.Map-view {
+    padding: 20rem 45rem;
+    border-radius: 1rem;
 }
