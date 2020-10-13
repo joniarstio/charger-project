@@ -38,6 +38,7 @@ export default class ShelterMap extends React.Component {
     super(props)
     this.state = {
       chargers: [],
+      chargerSearchString: "",
       selectedMarker: false
     }
   }
@@ -69,8 +70,8 @@ export default class ShelterMap extends React.Component {
         onClick={this.handleClick}
         googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyCL72hkbFiIIJDj6Jf4EHk4grZ61Rb8bbA&v=3.exp&libraries=geometry,drawing,places"
         loadingElement={<div style={{ height: `100%` }} />}
-        containerElement={<div style={{ height: `750px` }} />}
-        mapElement={<div style={{ height: `100%`, width: '80rem' }} />}
+        containerElement={<div style={{ height: `780px` }} />}
+        mapElement={<div style={{ height: `100%`, width: `80rem` }} />}
       />
     )
   }

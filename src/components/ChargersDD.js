@@ -3,13 +3,10 @@ import axios from 'axios';
 
 export default class DropDown extends React.Component {
     constructor(props) {
-        super(props);
+    super(props);
         this.state = {
         chargers: [],
-        chargerSearchString: ""
-
         }
-        
     }
 
     componentDidMount() {
@@ -23,9 +20,7 @@ export default class DropDown extends React.Component {
     render(){
         return <div className="drop-down">
             <form>
-            <label>
-            <h2>See all chargers from the list</h2>
-            </label>
+            <h3>Search chargers from the list</h3>
                 <select>
                 {
                  this.state.chargers.map((charger) => {

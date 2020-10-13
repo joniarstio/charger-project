@@ -13,18 +13,15 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      charger: [],
-      chargerSearchString: ""
+      chargers: [],
     }
   }
 
   componentDidMount() {
-   {/* Joni axios.get('http://3.91.205.54/chargers') */}
-   {/* Venla */}
    axios.get('http://54.84.83.147/chargers')
       .then(response => {
         console.log(response);
-        this.setState({ charger: response.data.chargers })
+        this.setState({ chargers: response.data.chargers })
       })
       .catch((err) => console.log(err));
   }
