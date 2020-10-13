@@ -1,26 +1,28 @@
 import React from 'react';
 import axios from 'axios';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './App.css';
-import SearchView from './components/ChargerSearchView';
 import MapsGoogle from './components/MapsGoogle';
-import { Account } from './components/Accounts';
-import Signup from './components/Signup';
-import Login from './components/Login';
-import Status from './components/Status';
+import LoginView from './components/LoginView';
+import ProtectedRoute from './components/ProtectedRoute';
+import ProtectedView from './components/ProtectedView';
+import Auth from './components/Auth';
+import constants from './constants.json';
 import Stopwatch from './components/Timer';
-
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       charger: [],
-      chargerSearchString: ""
+      chargerSearchString: "",
+      isAuthenticated: false,
     }
   }
 
+
   componentDidMount() {
-    axios.get('http://18.222.248.45/chargers')
+    axios.get('http://localhost:4000/chargers')
       .then(response => {
         console.log(response);
         this.setState({ charger: response.data.chargers })
@@ -41,6 +43,30 @@ class App extends React.Component {
     this.setState({ toLowerCase: event.target.value });
   }
 
+  onLogin = () => {
+    this.setState({ isAuthenticated: true })
+  }
+
+  onLoginFail = () => {
+    this.setState({ isAuthenticated: false });
+    console.log("Login failed");
+  }
+
+  loadProtectedData = () => {
+    axios.get(constants.baseAddress + '/chargers', Auth.getAxiosAuth()).then(results => {
+      this.setState({ someData: results.data.chargers });
+    })
+  }
+
+  storeUserInfo = (email, password,) => {
+    this.setState({
+      userInfo: {
+        email,
+        password
+      }
+    });
+  }
+
   render() {
     return (
       <main>
@@ -54,31 +80,37 @@ class App extends React.Component {
             <input type="text" onChange={this.onSearchChange} value={this.state.toLowerCase} />
           </div>
           <div>
-            <Account>
-              <Status />
-              <h2 className="App-login">Login<Login /></h2>
-              <h2 className="App-signup">Sign Up<Signup /></h2>
-            </Account>
+            <Router>
+              <Route path="/" exact render={
+                (routeProps) =>
+                  <LoginView
+                    loginSuccess={this.onLogin}
+                    loginFail={this.onLoginFail}
+                    userInfo={this.state.userInfo}
+                    redirectPathOnSuccess="/"
+                    {...routeProps}
+                  />
+              } />
+              <ProtectedRoute isAuthenticated={this.state.isAuthenticated} path="/" exact render={
+                (routeProps) =>
+                  <ProtectedView
+                    loadProtectedData={this.loadProtectedData}
+                  //someData={this.state.someData}
+                  />
+              }><Stopwatch />
+              </ProtectedRoute>
+            </Router>
           </div>
-          <div className="App-nav">
-            <ul>
-              <li>
-                <a>Start charging</a>
-                <Stopwatch />
-              </li>
-              <li>
-                <a>Previous charges</a>
-              </li>
-            </ul>
-          </div>
+
         </header>
         <body>
           <div className="Map">
             <MapsGoogle />
           </div>
           <div className="Map-view">
-            <SearchView chargers={this.state.charger.filter((charger) => charger.name.includes(this.state.toLowerCase))} />
+            {/*<SearchView chargers={this.state.charger.filter((charger) => charger.name.includes(this.state.toLowerCase))} /> */}
           </div>
+
         </body>
       </main>
     );
