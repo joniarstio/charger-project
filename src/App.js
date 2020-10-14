@@ -63,7 +63,12 @@ class App extends React.Component {
             <h1 className="main">Charge</h1>
             <h1 className="main-second">Up</h1>
           </div>
+          <div>
+            <p>The greatest e-car charging station platform.</p>
+            <p>You can browse stations by map or from the dropdown menu. Select your station and start charging</p>
+          </div>
           <br></br>
+          <hr></hr>
           <div>
             <Router>
               <Route path="/" exact render={
@@ -76,6 +81,8 @@ class App extends React.Component {
                     {...routeProps}
                   />
               } />
+              <br></br>
+              <hr></hr>
               <ProtectedRoute isAuthenticated={this.state.isAuthenticated} path="/" exact render={
                 (routeProps) =>
                   <ProtectedView

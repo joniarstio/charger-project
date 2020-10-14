@@ -1,6 +1,6 @@
-import Axios from 'axios';
 import React from 'react';
 import axios from 'axios';
+import styles from './Timer.module.css'
 
 export default class Stopwatch extends React.Component {
     state = {
@@ -84,18 +84,16 @@ export default class Stopwatch extends React.Component {
     render() {
         const { isRunning, runningTime } = this.state;
         return (
-            <div>
-                <h2>{this.formatTime(runningTime)}s</h2>
-                <div>{(this.formatTime(runningTime) * 0.2 / 60).toFixed(3)} € </div>
-
-
-                <button onClick={this.handleStartStopClick}>
-                    {isRunning ? "Stop" : "Start"}
-                </button>
-
-                <button onClick={this.handleResetClick}>Reset</button>
-                <button onClick={this.handleEndClick}>End</button>
-
+            <div className={styles.container}>
+                <h2>Time since start of the charge</h2>
+                    <h3>{this.formatTime(runningTime)}s</h3>
+                    <p>Current cost: </p>
+                    <div>{(this.formatTime(runningTime) * 0.2 / 60).toFixed(3)}€</div>
+                    <button className={styles.buttonStartStop} onClick={this.handleStartStopClick}>
+                        {isRunning ? "Stop" : "Start"}
+                    </button>
+                    <button className={styles.buttonEnd} onClick={this.handleEndClick}>End</button>
+                    <button className={styles.buttonReset} onClick={this.handleResetClick}>Pay</button>               
             </div>
         );
     }

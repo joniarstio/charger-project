@@ -28,7 +28,7 @@ export default class DropDown extends React.Component {
         return <div className="drop-down">
             <form>
             <h2>Search charging stations from the list</h2>
-            <input className={styles.search} type="text" placeholder="Search charger by location ex: Oulu" onChange={ this.onChange } value={ this.state.toLowerCase }/>
+            <input className={styles.search} type="text" placeholder="Search charger by location for example Oulu" onChange={ this.onChange } value={ this.state.toLowerCase }/>
                 <select className={styles.dropdown} >
                 {
                  this.state.chargers.filter(charger => charger.location.toLowerCase().includes(this.state.searchString)).map(charger => {
