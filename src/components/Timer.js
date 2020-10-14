@@ -6,30 +6,17 @@ export default class Stopwatch extends React.Component {
     state = {
         runningTime: 0,
         isRunning: false,
-<<<<<<< HEAD
-        chargers: []
-    };
-
-    componentDidMount() {
-        axios.get('http://54.84.83.147/chargers')
-          .then(response => {
-            console.log(response);
-            this.setState({ chargers: response.data})
-          })
-    }
-
-=======
-        charger: [],
+        chargers: [],
         previousCharges: [],
     };
 
     componentDidMount() {
-        Axios.get('http://localhost:4000/charger/:id/startCharge')
+        axios.get('http://54.84.83.147/charger/:id/startCharge')
             .then(response => {
                 console.log(response);
                 this.setState({ chargers: response.data })
             })
-        Axios.get('http://localhost:4000/charger/:id/stopCharge')
+        axios.get('http://54.84.83.147/charger/:id/stopCharge')
             .then(response => {
                 console.log(response);
                 this.setState({ chargers: response.data })
@@ -38,7 +25,6 @@ export default class Stopwatch extends React.Component {
 
 
     // Start and stop charging button functionality
->>>>>>> 0134f2634dfb1062b78e8f486310a5ddeacd8bea
     handleStartStopClick = () => {
         if (this.state.isRunning) {
             clearInterval(this.timerID);
@@ -48,7 +34,7 @@ export default class Stopwatch extends React.Component {
         } else {
             const startTime = Date.now() - this.state.runningTime;
             let previousChargesData = this.state.previousCharges;
-            previousChargesData.push(this.state.charger[0]);
+            previousChargesData.push(this.state.chargers[0]);
 
             this.timerID = setInterval(() => {
                 this.setState({ runningTime: Date.now() - startTime, isRunning: true, previousCharges: previousChargesData });
@@ -56,12 +42,14 @@ export default class Stopwatch extends React.Component {
             console.log('Start button clicked');
         }
     }
+
     // Reset button functionality
     handleResetClick = () => {
         clearInterval(this.timerID);
         this.setState({ isRunning: false, runningTime: 0 })
         console.log('Reset button clicked');
     }
+
     // End button functionality
     handleEndClick = (startTime, stopTime, totalTime, userID, chargerID, totalCosts, electricityUsed) => {
         clearInterval(this.timerID);
@@ -84,12 +72,15 @@ export default class Stopwatch extends React.Component {
         console.log('Used ID: ' + userID);
         console.log('Charger ID: ' + chargerID);
     }
+
     componentWillUnmount() {
         clearInterval(this.timerID);
     }
+
     formatTime(t) {
         return (t / 1000).toFixed(1);
     }
+
     render() {
         const { isRunning, runningTime } = this.state;
         return (

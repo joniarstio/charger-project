@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './App.css';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import MapsGoogle from './components/MapsGoogle';
 import ChargersDD from './components/ChargersDD';
 import LoginView from './components/LoginView';
@@ -15,33 +15,19 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      charger: [],
-      chargerSearchString: "",
+      chargers: [],
       isAuthenticated: false,
     }
   }
 
 
   componentDidMount() {
-    axios.get('http://localhost:4000/chargers')
+    axios.get('http://54.84.83.147/chargers')
       .then(response => {
         console.log(response);
         this.setState({ charger: response.data.chargers })
       })
       .catch((err) => console.log(err));
-  }
-
-  toLowerCase = () => {
-    const lowerCase = this.state.chargerSearchString.toLowerCase();
-    this.setState({
-      chargerSearchString: lowerCase
-    });
-
-  }
-
-  onSearchChange = (event) => {
-    console.log(event.target.value);
-    this.setState({ toLowerCase: event.target.value });
   }
 
   onLogin = () => {
@@ -77,6 +63,7 @@ class App extends React.Component {
             <h1 className="main">Charge</h1>
             <h1 className="main-second">Up</h1>
           </div>
+          <br></br>
           <div>
             <Router>
               <Route path="/" exact render={
@@ -99,17 +86,13 @@ class App extends React.Component {
               </ProtectedRoute>
             </Router>
           </div>
-
         </header>
         {/* Main map view and dropdwon list */}
         <body>
           <>
             <ChargersDD />
+            <br/>
             <MapsGoogle />
-          </div>
-          <div className="Map-view">
-            {/*<SearchView chargers={this.state.charger.filter((charger) => charger.name.includes(this.state.toLowerCase))} /> */}
-          </div>
           </>
         </body>
       </main>
