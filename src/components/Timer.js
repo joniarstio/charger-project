@@ -6,30 +6,17 @@ export default class Stopwatch extends React.Component {
     state = {
         runningTime: 0,
         isRunning: false,
-<<<<<<< HEAD
-        chargers: []
-    };
-
-    componentDidMount() {
-        axios.get('http://54.84.83.147/chargers')
-          .then(response => {
-            console.log(response);
-            this.setState({ chargers: response.data})
-          })
-    }
-
-=======
         charger: [],
         previousCharges: [],
     };
 
     componentDidMount() {
-        Axios.get('http://localhost:4000/charger/:id/startCharge')
+        axios.get('http://localhost:4000/charger/:id/startCharge')
             .then(response => {
                 console.log(response);
                 this.setState({ chargers: response.data })
             })
-        Axios.get('http://localhost:4000/charger/:id/stopCharge')
+        axios.get('http://localhost:4000/charger/:id/stopCharge')
             .then(response => {
                 console.log(response);
                 this.setState({ chargers: response.data })
@@ -38,7 +25,6 @@ export default class Stopwatch extends React.Component {
 
 
     // Start and stop charging button functionality
->>>>>>> 0134f2634dfb1062b78e8f486310a5ddeacd8bea
     handleStartStopClick = () => {
         if (this.state.isRunning) {
             clearInterval(this.timerID);
