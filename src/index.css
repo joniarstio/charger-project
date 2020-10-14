@@ -1,0 +1,13 @@
+body {
+    font-family: 'Fira Sans Condensed', sans-serif, Arial, Helvetica;
+    background-color: whitesmoke;
+    line-height: 2rem;
+}
+
+main {
+    display: flex;
+}
+
+header {
+    padding-right: 7rem;
+}
