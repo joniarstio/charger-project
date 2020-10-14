@@ -1,4 +1,3 @@
-
 const express = require('express');
 const bodyParser = require('body-parser');
 const { v4: uuidv4 } = require('uuid');
@@ -15,13 +14,13 @@ app.use(cors());
 
 let users = [];
 let chargerOperations = [{
-  startTime: null,      // Starting time of charging
-  stopTime: null,       // Stopping time of charging
-  totalTime: 0,         // Total time in seconds 
-  userID: null,         // ID of the user 
-  chargerID: null,      // ID of the charger
-  totalCosts: 0,        // Total costs in €
-  electricityUsed: 0    // Total kWh used
+    startTime: null,      // Starting time of charging
+    stopTime: null,       // Stopping time of charging
+    totalTime: 0,         // Total time in seconds 
+    userID: null,         // ID of the user 
+    chargerID: null,      // ID of the charger
+    totalCosts: 0,        // Total costs in €
+    electricityUsed: 0    // Total kWh used
 }];
 
 app.get('/', (req, res) => {
@@ -47,13 +46,14 @@ app.get('/users', (req, res) => {
   res.json(users);
 });
 
-passport.use(new passportHttp.BasicStrategy(function (username, password, done) {
+passport.use(new passportHttp.BasicStrategy(function(username, password, done) {
   const userResult = users.find(user => user.username === username);
-  if (userResult == undefined) {
+  if(userResult == undefined) {
     return done(null, false);
   }
 
-  if (bcrypt.compareSync(password, userResult.password) == false) {
+  if(bcrypt.compareSync(password, userResult.password) == false)
+  {
     return done(null, false);
   }
 
@@ -77,11 +77,11 @@ app.get('/chargers', (req, res) => {
   res.json(chargerData.chargers);
 })
 
-app.post('/charger/:id/startCharge', passport.authenticate('basic', { session: false }), (req, res) => {
+app.post('/charger/:id/startCharge', passport.authenticate('basic', { session: false }), (req, res) => { 
   chargerOperations.push(startTime, stopTime, totalTime, userID, chargerID, totalCosts, electricityUsed);
 })
 
-app.post('/charger/:id/stopCharge', passport.authenticate('basic', { session: false }), (req, res) => {
+app.post('/charger/:id/stopCharge', passport.authenticate('basic', { session: false }), (req, res) => { 
   chargerOperations.push(startTime, stopTime, totalTime, userID, chargerID, totalCosts, electricityUsed);
 })
 
