@@ -19,9 +19,11 @@ const MapWithAMarker = compose(withScriptjs, withGoogleMap)(props => {
                   <br></br>
                   {charger.location}
                   <br></br>
-                  <p>Connector type: {charger.connectorType}</p>
-                  <p>Price: {charger.price} €/kWh</p>
-
+                  <span>Connector type: {charger.connectorType}</span>
+                  <br></br>
+                  <span>Price: {charger.price} €/kWh</span>
+                  <br></br>
+                  <span>Charger serial number: {charger.serialNo}</span>
                 </div>
               </InfoWindow>
             }
@@ -71,9 +73,7 @@ export default class ShelterMap extends React.Component {
         onClick={this.handleClick}
         googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyCL72hkbFiIIJDj6Jf4EHk4grZ61Rb8bbA&v=3.exp&libraries=geometry,drawing,places"
         loadingElement={<div style={{ height: `100%` }} />}
-        containerElement={<div style={{ height: `800px` }} />}
-        mapElement={<div style={{ height: `100%` }} />}
-        containerElement={<div style={{ height: `780px` }} />}
+        containerElement={<div style={{ height: `750px` }} />}
         mapElement={<div style={{ height: `100%`, width: `80rem` }} />}
       />
     )

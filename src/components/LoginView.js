@@ -1,5 +1,6 @@
 import React from 'react';
 import Auth from './Auth';
+import styles from './LoginView.module.css';
 
 export default function LoginView(props) {
 
@@ -20,19 +21,19 @@ export default function LoginView(props) {
 
     return (
         <div>
+        <div className={styles.container}>
             <h2>Login</h2>
-            <div>
-                Please login to start charging
-      </div>
+            Please login to start charging
+            </div>
             <form onSubmit={login}>
-                <div>
-                    Username <input type="text" name="username" />
+                <div className={styles.centered}>
+                    <input className={styles.input} type="text" name="username" placeholder="Username"/>
                 </div>
-                <div>
-                    Password <input type="text" name="password" />
+                <div className={styles.centered}>
+                    <input className={styles.input} type="text" name="password" placeholder="Password"/>
                 </div>
-                <div>
-                    <button type="submit">Login</button>
+                <div className={styles.centered}>
+                    <button className={styles.button} type="submit">Login</button>
                 </div>
             </form>
         </div>
