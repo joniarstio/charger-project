@@ -15,7 +15,8 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      chargers: [],
+      charger: [],
+      chargerSearchString: "",
       isAuthenticated: false,
     }
   }
@@ -25,11 +26,23 @@ class App extends React.Component {
     axios.get('http://localhost:4000/chargers')
       .then(response => {
         console.log(response);
-        this.setState({ chargers: response.data.chargers })
+        this.setState({ charger: response.data.chargers })
       })
       .catch((err) => console.log(err));
   }
 
+  toLowerCase = () => {
+    const lowerCase = this.state.chargerSearchString.toLowerCase();
+    this.setState({
+      chargerSearchString: lowerCase
+    });
+
+  }
+
+  onSearchChange = (event) => {
+    console.log(event.target.value);
+    this.setState({ toLowerCase: event.target.value });
+  }
 
   onLogin = () => {
     this.setState({ isAuthenticated: true })
@@ -88,7 +101,7 @@ class App extends React.Component {
           </div>
 
         </header>
-        {/* Map view and dropdwon list */}
+        {/* Main map view and dropdwon list */}
         <body>
           <>
             <ChargersDD />

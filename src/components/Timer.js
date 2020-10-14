@@ -1,6 +1,5 @@
 import Axios from 'axios';
 import React from 'react';
-import axios from 'axios';
 
 export default class Stopwatch extends React.Component {
     state = {
@@ -11,12 +10,12 @@ export default class Stopwatch extends React.Component {
     };
 
     componentDidMount() {
-        axios.get('http://localhost:4000/charger/:id/startCharge')
+        Axios.get('http://localhost:4000/charger/:id/startCharge')
             .then(response => {
                 console.log(response);
                 this.setState({ chargers: response.data })
             })
-        axios.get('http://localhost:4000/charger/:id/stopCharge')
+        Axios.get('http://localhost:4000/charger/:id/stopCharge')
             .then(response => {
                 console.log(response);
                 this.setState({ chargers: response.data })
